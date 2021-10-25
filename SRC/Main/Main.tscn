@@ -1,8 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Tiles/Background/Cave/tileset_Cave.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Tiles/Background/CaveGround.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Tiles/Charactor/Player.png" type="Texture" id=3]
+[ext_resource path="res://SRC/Main/Manager.gd" type="Script" id=4]
+[ext_resource path="res://SRC/Systems/Objects/Player.gd" type="Script" id=5]
+[ext_resource path="res://SRC/Systems/Objects/Objeckt.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Tiles/Obstacles/Rock.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Tiles/Obstacles/Box.png" type="Texture" id=8]
 
 [sub_resource type="TileSet" id=1]
 0/name = "CaveGround.png 0"
@@ -22,16 +27,36 @@
 
 [node name="Main" type="Node2D"]
 
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
 [node name="Wall" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 24, 24 )
 cell_y_sort = true
 format = 1
 tile_data = PoolIntArray( -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 1, -65532, 0, 1, -65531, 0, 1, -65530, 0, 1, -65529, 0, 1, -65528, 0, 1, -65527, 0, 1, -65526, 0, 1, -65525, 0, 1, -65524, 0, 1, -65523, 0, 1, -65522, 0, 1, -65521, 0, 1, -65520, 0, 1, -65519, 0, 1, -65518, 0, 1, -65517, 0, 1, -65516, 0, 1, -65515, 0, 1, -65514, 0, 1, -65513, 0, 1, -65512, 0, 2, 65535, 0, 65536, 0, 0, 65541, 1, 0, 131073, 2, 0, 131073, 3, 0, 131073, 4, 0, 131073, 5, 0, 131073, 6, 0, 131073, 7, 0, 131073, 8, 0, 131073, 9, 0, 131073, 10, 0, 131073, 11, 0, 131073, 12, 0, 131073, 13, 0, 131073, 14, 0, 131073, 15, 0, 131073, 16, 0, 131073, 17, 0, 131073, 18, 0, 131073, 19, 0, 131073, 20, 0, 131073, 21, 0, 131073, 22, 0, 131073, 23, 0, 65542, 24, 0, 65538, 131071, 0, 65536, 65536, 0, 65538, 65537, 1, 0, 65538, 1, 1, 65539, 1, 1, 65540, 1, 1, 65541, 1, 1, 65542, 1, 1, 65543, 1, 1, 65544, 1, 1, 65545, 1, 1, 65546, 1, 1, 65547, 1, 1, 65548, 1, 1, 65549, 1, 1, 65550, 1, 1, 65551, 1, 1, 65552, 1, 1, 65553, 1, 1, 65554, 1, 1, 65555, 1, 1, 65556, 1, 1, 65557, 1, 1, 65558, 1, 2, 65559, 0, 65536, 65560, 0, 65538, 196607, 0, 65536, 131072, 0, 65538, 131095, 0, 65536, 131096, 0, 65538, 262143, 0, 65536, 196608, 0, 65538, 196631, 0, 65536, 196632, 0, 65538, 327679, 0, 65536, 262144, 0, 65538, 262167, 0, 65536, 262168, 0, 65538, 393215, 0, 65536, 327680, 0, 65538, 327703, 0, 65536, 327704, 0, 65538, 458751, 0, 65536, 393216, 0, 65538, 393239, 0, 65536, 393240, 0, 65538, 524287, 0, 65536, 458752, 0, 65538, 458775, 0, 65536, 458776, 0, 65538, 589823, 0, 65536, 524288, 0, 65538, 524311, 0, 65536, 524312, 0, 65538, 655359, 0, 65536, 589824, 0, 65538, 589847, 0, 65536, 589848, 0, 65538, 720895, 0, 65536, 655360, 0, 65538, 655383, 0, 65536, 655384, 0, 65538, 786431, 0, 65536, 720896, 0, 131077, 720897, 0, 1, 720898, 0, 1, 720899, 0, 1, 720900, 0, 1, 720901, 0, 1, 720902, 0, 1, 720903, 0, 1, 720904, 0, 1, 720905, 0, 1, 720906, 0, 1, 720907, 0, 1, 720908, 0, 1, 720909, 0, 1, 720910, 0, 1, 720911, 0, 1, 720912, 0, 1, 720913, 0, 1, 720914, 0, 1, 720915, 0, 1, 720916, 0, 1, 720917, 0, 1, 720918, 0, 1, 720919, 0, 131078, 720920, 0, 65538, 851967, 0, 131072, 786432, 0, 131073, 786433, 0, 131073, 786434, 0, 131073, 786435, 0, 131073, 786436, 0, 131073, 786437, 0, 131073, 786438, 0, 131073, 786439, 0, 131073, 786440, 0, 131073, 786441, 0, 131073, 786442, 0, 131073, 786443, 0, 131073, 786444, 0, 131073, 786445, 0, 131073, 786446, 0, 131073, 786447, 0, 131073, 786448, 0, 131073, 786449, 0, 131073, 786450, 0, 131073, 786451, 0, 131073, 786452, 0, 131073, 786453, 0, 131073, 786454, 0, 131073, 786455, 0, 131073, 786456, 0, 131074 )
+script = ExtResource( 4 )
 
 [node name="Player" type="Sprite" parent="Wall"]
-position = Vector2( 138.306, 94.3471 )
+position = Vector2( 300, 132 )
 texture = ExtResource( 3 )
+script = ExtResource( 5 )
+tile = Vector2( 12, 5 )
+
+[node name="Box" type="Sprite" parent="Wall"]
+position = Vector2( 204, 156 )
+texture = ExtResource( 8 )
+script = ExtResource( 6 )
+tile = Vector2( 8, 6 )
+
+[node name="Rock" type="Sprite" parent="Wall"]
+position = Vector2( 300, 156 )
+texture = ExtResource( 7 )
+script = ExtResource( 6 )
+tile = Vector2( 12, 6 )
+moveable = false
 
 [node name="Floor" type="TileMap" parent="."]
 z_index = -1
@@ -61,3 +86,4 @@ margin_bottom = 36.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
+[connection signal="timeout" from="MoveTimer" to="Wall" method="_on_MoveTimer_timeout"]
